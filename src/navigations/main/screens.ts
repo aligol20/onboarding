@@ -2,11 +2,16 @@
  * The array of main stack defined here
  */
 
+import { DARK_BLUE, WHITE } from '../../consts/colors';
 import HomeScreen from '../../screens/HomeScreen';
 import PostDetailsScreen from '../../screens/PostDetailsScreen';
 
 const commonOptions = {
   headerShown: true,
+  headerTintColor:WHITE,
+  headerStyle: {
+    backgroundColor: DARK_BLUE,
+  },
 };
 const screens = [
   {
@@ -16,12 +21,7 @@ const screens = [
       ...commonOptions,
       headerShadowVisible: false,
       headerTitle: 'Home',
-      headerStyle: {
-        backgroundColor: 'rgb(56,87,117)',
-      },
-      headerTitleStyle: {
-        color: 'white',
-      },
+     
     },
   },
   {
@@ -31,6 +31,9 @@ const screens = [
       ...commonOptions,
       headerTitle: 'PostDetails',
       headerShadowVisible: false,
+      
+     
+     
     },
   },
 ];

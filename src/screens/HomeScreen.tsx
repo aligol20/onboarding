@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostItem from "../components/PostItem";
 import fetchPosts from "../redux/actions/fetchPosts";
 import { RootState } from '../redux/reducers/root';
+import { Postitem } from "../types/Types";
 
 
 const HomeScreen = ()=>{
@@ -15,10 +16,11 @@ dispatch(fetchPosts())
 },[])
 
 const {postList} = useSelector((state:RootState)=>state.posts )
-const onPressPost = () =>{
-    navigation.navigate('PostDetails')
+const onPressPost = (item:Postitem) =>{
+    console.log("PostDetails",item)
+
+    navigation.navigate('PostDetails',{item})
 }
-console.log(postList,'&&&&&&')
 
     return(
         <View style={styles.maintainer}>
@@ -27,7 +29,9 @@ console.log(postList,'&&&&&&')
         scrollEnabled
         data={postList}
         renderItem={({ item }) => 
-        <PostItem {...item}/>}
+        <PostItem {...item}
+        onPressItem={onPressPost}
+        />}
         
         />
 

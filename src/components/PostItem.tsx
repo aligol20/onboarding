@@ -1,17 +1,28 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import { BLACK, GREY } from '../consts/colors';
 import {Postitem} from '../types/Types';
+import { scale } from '../utils/scale';
+import { medium_scale, small_scale } from '../utils/sizing';
 import CustomText from './Customtext';
 
 const PostItem = (item: Postitem) => {
-  console.log(item, '********');
 
-  const {title, body, id} = item;
+  const {title, body, id,onPressItem} = item;
+
+  const onPress = ()=>{
+    console.log(item, '********');
+
+    onPressItem(item)
+  }
   return (
+    <TouchableOpacity
+    onPress={onPress}>
     <View style={styles.container}>
       <CustomText style={styles.title}>{title}</CustomText>
-      <CustomText>{body}</CustomText>
+      <CustomText style={styles.body}>{body}</CustomText>
     </View>
+    </TouchableOpacity>
   );
 };
 
@@ -30,6 +41,13 @@ const styles = StyleSheet.create({
   title:{
       textAlign:"left",
       maxWidth:'90%',
-      color:"red"
+      color:BLACK,
+      fontSize:medium_scale,
+  },
+  body:{
+      textAlign:"left",
+      maxWidth:'90%',
+      color:GREY,
+      fontSize:small_scale
   }
 });
