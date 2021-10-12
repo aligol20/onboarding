@@ -2,13 +2,17 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import { BLACK, GREY } from '../consts/colors';
 import {Postitem} from '../types/Types';
+import dateHelper from '../utils/dateHelper';
 import { scale } from '../utils/scale';
-import { medium_scale, small_scale } from '../utils/sizing';
+import { extra_large_scale, full_width, medium_scale, small_scale } from '../utils/sizing';
 import CustomText from './Customtext';
+import CustomVideoPlayer from './CustomVideoPlayer';
+import PostHeader from './PostHeader';
+import PostItemToolbar from './PostItemToolbar';
 
 const PostItem = (item: Postitem) => {
 
-  const {title, body, id,onPressItem} = item;
+  const { mediaResponses,contentResponse,userIdentification, id,onPressItem} = item;
 
   const onPress = ()=>{
     console.log(item, '********');
@@ -16,13 +20,24 @@ const PostItem = (item: Postitem) => {
     onPressItem(item)
   }
   return (
-    <TouchableOpacity
-    onPress={onPress}>
+
     <View style={styles.container}>
-      <CustomText style={styles.title}>{title}</CustomText>
-      <CustomText style={styles.body}>{body}</CustomText>
+      <PostHeader 
+      username={userIdentification.username}
+      src={userIdentification.avatarUrl}/>
+      <CustomVideoPlayer
+      src={mediaResponses[0].originalUrl}
+      
+      />
+      <PostItemToolbar/>
+          <TouchableOpacity
+          style={styles.body}
+    onPress={onPress}>
+      <CustomText style={styles.desc}>{contentResponse.description}</CustomText>
+      <CustomText style={styles.date}>{dateHelper(contentResponse.creationDate)}</CustomText>
+      </TouchableOpacity>
+
     </View>
-    </TouchableOpacity>
   );
 };
 
@@ -31,23 +46,25 @@ export default PostItem;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     marginVertical: 7,
-    backgroundColor:"white",
     margin:3,
     padding:3,
-    borderRadius:5
+    borderRadius:5,
   },
-  title:{
+  desc:{
       textAlign:"left",
-      maxWidth:'90%',
+      maxWidth:'97%',
       color:BLACK,
-      fontSize:medium_scale,
+      fontSize:small_scale,
   },
-  body:{
+  date:{
       textAlign:"left",
       maxWidth:'90%',
       color:GREY,
       fontSize:small_scale
+  },
+  body:{
+    width:"100%"
   }
 });

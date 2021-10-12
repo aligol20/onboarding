@@ -10,7 +10,7 @@ const persistConfig = {
   version: 1,
   storage: AsyncStorage,
   debug: true,
-  whitelist: ['posts'],
+  whitelist: [],
   blacklist: [],
 };
 
