@@ -38,9 +38,9 @@ platform :android do
       print_command: false,
       properties: {
         "android.injected.signing.store.file" => "my-upload-key.jks",
-        "android.injected.signing.store.password" => "****",
+        "android.injected.signing.store.password" => "qwerty12345",
         "android.injected.signing.key.alias" => "my-key-alias",
-        "android.injected.signing.key.password" => "****",
+        "android.injected.signing.key.password" => "qwerty12345",
       }
     )
     end
