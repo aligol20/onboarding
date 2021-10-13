@@ -1,10 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useContext, useEffect, useState } from 'react';
-import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
+import React, {useContext, useEffect, useState} from 'react';
+import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import Container from '../../components/Container';
 import CustomButton from '../../components/CustomButton';
-import { AuthContext } from '../../navigations/AppNavigator';
-import { verticalScale } from '../../utils/scale';
+import {AuthContext} from '../../navigations/AppNavigator';
+import {verticalScale} from '../../utils/scale';
 import snackBar from '../../utils/snackBar';
 
 const LoginScreen = () => {
@@ -13,18 +13,17 @@ const LoginScreen = () => {
   const [isFetching, setIsFetching] = useState(false);
 
   // usage is for changing the current stack
-  const auth = useContext<any>(AuthContext) ;
+  const auth = useContext<any>(AuthContext);
 
   /**
    * By  LoginScreen Mounted, the token should be removed to fetching the new one
    * and preventing user to see the other screens in the future without token
    */
-  useEffect(()=>{
-    const  checkToken = async() => {
-    await AsyncStorage.removeItem('token');
-    }
-    checkToken()
-
+  useEffect(() => {
+    const checkToken = async () => {
+      await AsyncStorage.removeItem('token');
+    };
+    checkToken();
   }, []);
 
   const onLogin = async () => {
@@ -38,7 +37,7 @@ const LoginScreen = () => {
       //   await AsyncStorage.setItem('token', data?.access_token);
       //   snackBar({text: 'Hi, welcome!'});
 
-       auth.main() ;
+      auth.main();
       // }
     } catch (err) {
       console.log(err, 'err');

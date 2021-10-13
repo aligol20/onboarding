@@ -1,12 +1,12 @@
 import {
   createBottomTabNavigator,
-  useBottomTabBarHeight
+  useBottomTabBarHeight,
 } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import Foundation from 'react-native-vector-icons/Foundation';
-import { DARK_BLUE, GREY, WHITE } from '../../consts/colors';
-import { medium_scale } from '../../utils/sizing';
+import {DARK_BLUE, GREY} from '../../consts/colors';
+import {medium_scale} from '../../utils/sizing';
 import exploreScreens from './screens/exploreScreens';
 import favoriteScreens from './screens/favoriteScreens';
 import homeScreens from './screens/homeScreens';
@@ -20,9 +20,7 @@ let bottomHeight = null;
 const HomeStack = () => {
   bottomHeight = useBottomTabBarHeight();
   return (
-    <Stack.Navigator
-    initialRouteName={'Home'}>
-
+    <Stack.Navigator initialRouteName={'Home'}>
       {homeScreens.map(x => (
         <Stack.Screen
           key={x.name}
@@ -37,8 +35,7 @@ const HomeStack = () => {
 
 const ExploreStack = () => {
   return (
-    <Stack.Navigator
-    initialRouteName={'Explore'}>
+    <Stack.Navigator initialRouteName={'Explore'}>
       {exploreScreens.map(x => (
         <Stack.Screen
           key={x.name}
@@ -53,9 +50,7 @@ const ExploreStack = () => {
 
 const SharePostStack = () => {
   return (
-    <Stack.Navigator
-    initialRouteName={'SharePost'}>
-
+    <Stack.Navigator initialRouteName={'SharePost'}>
       {sharePostScreens.map(x => (
         <Stack.Screen
           key={x.name}
@@ -70,9 +65,7 @@ const SharePostStack = () => {
 
 const FavoriteStack = () => {
   return (
-    <Stack.Navigator
-    initialRouteName={'Favorite'}>
-
+    <Stack.Navigator initialRouteName={'Favorite'}>
       {favoriteScreens.map(x => (
         <Stack.Screen
           key={x.name}
@@ -87,9 +80,7 @@ const FavoriteStack = () => {
 
 const ProfileStack = () => {
   return (
-    <Stack.Navigator
-    initialRouteName={'Profile'}>
-
+    <Stack.Navigator initialRouteName={'Profile'}>
       {profileScreens.map(x => (
         <Stack.Screen
           key={x.name}
@@ -105,17 +96,15 @@ const ProfileStack = () => {
 const MainStartupTabs = () => {
   return (
     <Tab.Navigator
-    
-    
       screenOptions={({route, navigation}) => ({
-        tabBarShowLabel:false,
-        headerStyle:{
-          backgroundColor:DARK_BLUE,
+        tabBarShowLabel: false,
+        headerStyle: {
+          backgroundColor: DARK_BLUE,
         },
         tabBarIcon: ({focused, color, size}) => {
-          let iconName='';
+          let iconName = '';
 
-          switch(route.name){
+          switch (route.name) {
             case 'HomeTab':
               iconName = 'home';
               break;
@@ -131,20 +120,16 @@ const MainStartupTabs = () => {
             case 'ProfileTab':
               iconName = 'torso';
               break;
-
           }
-            return (
-              <Foundation
-                name={iconName}
-                size={medium_scale}
-                color={focused ? DARK_BLUE : GREY}
-              />
-            );
-         
+          return (
+            <Foundation
+              name={iconName}
+              size={medium_scale}
+              color={focused ? DARK_BLUE : GREY}
+            />
+          );
         },
-      })}
-      
-     >
+      })}>
       <Tab.Screen name="HomeTab" component={HomeStack} />
       <Tab.Screen name="SearchTab" component={ExploreStack} />
       <Tab.Screen name="SharePostTab" component={SharePostStack} />

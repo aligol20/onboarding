@@ -2,14 +2,13 @@
  * The array of main stack defined here
  */
 
-import { DARK_BLUE, WHITE } from '../../../consts/colors';
+import { WHITE } from '../../../consts/colors';
 import ExploreScreen from '../../../screens/main/explore/ExploreScreen';
 import FavoriteScreen from '../../../screens/main/favorite/FavoriteScreen';
 import HomeScreen from '../../../screens/main/home/HomeScreen';
 import PostDetailsScreen from '../../../screens/main/home/PostDetailsScreen';
 import ProfileScreen from '../../../screens/main/profile/ProfileScreen';
 import SharePostScreen from '../../../screens/main/sharePost/SharepostScreen';
-import ShareScreen from '../../../screens/main/sharePost/SharepostScreen';
 
 const commonOptions = {
   headerShown: false,

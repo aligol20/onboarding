@@ -7,18 +7,23 @@ export const postsSlice = createSlice({
     isFetching: false,
     postList: [],
     symbol: '',
+    dataFinished:false
   },
   reducers: {
 
-    requestStarted: (state, action) => {
+    requestStarted: (state) => {
       state.isFetching = true;
     },
     requestPostsSuccess:(state, action)=>{
+      state.isFetching = false;
       state.postList = action.payload;
     },
     requestFinished: (state, action) => {
       state.isFetching = false;
     },
+    onDataFinished:(state,action)=>{
+      state.dataFinished = action.payload
+    }
   },
 });
 

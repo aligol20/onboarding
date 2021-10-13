@@ -19,7 +19,7 @@ export interface Postitem {
         
     }]
     id:number;
-    onPressItem:(item:Postitem)=>void;
+    onPressItem?:(item:Postitem)=>void;
     userIdentification:{
         userId:number;
         username:string;
@@ -36,6 +36,7 @@ export interface Postitem {
     comments:number;
     owner:boolean;
 }
+
 export interface AuthTypes {
     main : ()=>void;
     signIn:()=>void;

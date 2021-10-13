@@ -1,10 +1,6 @@
-import moment from "moment"
+import moment from 'moment';
 
-
-
-const dateHelper = (date:string)=>{
-
-
-    return moment.utc(date).local().fromNow()
-}
-export default dateHelper
+const dateHelper = (date: string) => {
+  return moment.utc(date).local().fromNow();
+};
+export default dateHelper;

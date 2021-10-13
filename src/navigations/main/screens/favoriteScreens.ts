@@ -9,7 +9,6 @@ import HomeScreen from '../../../screens/main/home/HomeScreen';
 import PostDetailsScreen from '../../../screens/main/home/PostDetailsScreen';
 import ProfileScreen from '../../../screens/main/profile/ProfileScreen';
 import SharePostScreen from '../../../screens/main/sharePost/SharepostScreen';
-import ShareScreen from '../../../screens/main/sharePost/SharepostScreen';
 
 const commonOptions = {
   headerShown: true,
