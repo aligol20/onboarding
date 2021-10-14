@@ -5,38 +5,59 @@ import {useDispatch, useSelector} from 'react-redux';
 import Container from '../../../components/Container';
 import CustomLoading from '../../../components/CustomLoading';
 import PostItem from '../../../components/PostItem';
+import {PAGINATION_STEP} from '../../../consts/api';
 import fetchPosts from '../../../redux/actions/fetchPosts';
 import {RootState} from '../../../redux/reducers/root';
-import {Postitem} from '../../../types/Types';
+import {PostTypes} from '../../../types/Types';
 
 const HomeScreen = () => {
-  const [page, setPage] = useState(0);
+  const [lastReceivedItem, setLastReceivedItem] = useState(PAGINATION_STEP - 1);
 
   const navigation = useNavigation<any>();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchPosts(page));
+    dispatch(fetchPosts(0, lastReceivedItem));
   }, []);
+  useEffect(() => {
+    console.log(lastReceivedItem, 'lastReceivedItem');
+  }, [lastReceivedItem]);
 
-  const {postList, isFetching} = useSelector((state: RootState) => state.posts);
+  const {postList, isFetching, dataFinished} = useSelector(
+    (state: RootState) => state.posts,
+  );
+  useEffect(() => {
+    console.log(postList, 'postList');
+  }, [postList]);
 
-  const onPressPost = (item: Postitem) => {
-    console.log('PostDetails', item);
-
-    navigation.navigate('PostDetails', {item});
-  };
   const fetchMore = () => {
-    setPage(page + 1);
+    console.log(dataFinished, 'fetch more called');
+
+    if (!dataFinished && !isFetching) {
+      const lastItem = lastReceivedItem + PAGINATION_STEP;
+      const firstItem = lastReceivedItem + 1;
+      dispatch(fetchPosts(firstItem, lastItem));
+      setLastReceivedItem(lastItem);
+    }
+  };
+  const onRefresh = () => {
+    setLastReceivedItem(PAGINATION_STEP - 1);
+    dispatch(fetchPosts(0, PAGINATION_STEP - 1));
   };
 
   return (
-    <Container isLoading={isFetching} style={styles.maintainer}>
+    <Container
+      isLoading={postList.length === 0 && isFetching}
+      style={styles.maintainer}>
       <FlatList
         scrollEnabled
+        onRefresh={onRefresh}
+        refreshing={isFetching}
+        keyExtractor={(item: PostTypes, index) => item.id.toString()}
         data={postList}
-        renderItem={({item}) => (
-          <PostItem {...item} onPressItem={onPressPost} />
-        )}
+        renderItem={({item}) => <PostItem {...item} />}
+        ListFooterComponent={
+          <>{isFetching && postList.length > 0 && <CustomLoading />}</>
+        }
         onEndReached={fetchMore}
       />
     </Container>

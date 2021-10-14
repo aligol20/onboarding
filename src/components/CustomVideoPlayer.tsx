@@ -4,7 +4,6 @@ import WebView from 'react-native-webview';
 import {full_width} from '../utils/sizing';
 
 const CustomVideoPlayer = ({src, style}: {src: string; style?: ViewStyle}) => {
-  console.log(src, 'src %%%%%%');
   return (
     <View style={{backgroundColor: 'red', flex: 1, alignItems: 'center'}}>
       <WebView

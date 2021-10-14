@@ -1,42 +1,33 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {BLACK, GREY} from '../consts/colors';
-import {Postitem} from '../types/Types';
+import {PostTypes} from '../types/Types';
 import dateHelper from '../utils/dateHelper';
-import {small_scale} from '../utils/sizing';
+import {semi_small_scale, small_scale, tiny_scale} from '../utils/sizing';
 import CustomText from './Customtext';
 import CustomVideoPlayer from './CustomVideoPlayer';
 import PostHeader from './PostHeader';
 import PostItemToolbar from './PostItemToolbar';
 
-const PostItem = (item: Postitem) => {
-  const {mediaResponses, contentResponse, userIdentification, id, onPressItem} =
-    item;
+const PostItem = (item: PostTypes) => {
+  const {mediaResponses, contentResponse, userIdentification, id} = item;
 
-  const onPress = () => {
-    console.log(item, '********');
-
-    // onPressItem(item);
-  };
-  const onPressLike = () => {
-    console.log(item.id);
-  };
   return (
     <View style={styles.container}>
       <PostHeader
         username={userIdentification.username}
-        src={userIdentification.avatarUrl}
+        avatarSRC={userIdentification.avatarUrl}
       />
       <CustomVideoPlayer src={mediaResponses[0].originalUrl} />
       <PostItemToolbar item={item} />
-      <TouchableOpacity style={styles.body} onPress={onPress}>
+      <View style={styles.body}>
         <CustomText style={styles.desc}>
           {contentResponse.description}
         </CustomText>
         <CustomText style={styles.date}>
           {dateHelper(contentResponse.creationDate)}
         </CustomText>
-      </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -61,8 +52,9 @@ const styles = StyleSheet.create({
   date: {
     textAlign: 'left',
     maxWidth: '90%',
+    marginTop: tiny_scale,
     color: GREY,
-    fontSize: small_scale,
+    fontSize: semi_small_scale,
   },
   body: {
     width: '100%',

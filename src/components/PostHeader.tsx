@@ -10,10 +10,10 @@ import {
 import Avatar from './Avatar';
 import CustomText from './Customtext';
 
-const PostHeader = ({src, username}: PostHeaderProps) => {
+const PostHeader = ({avatarSRC, username}: PostHeaderProps) => {
   return (
     <View style={styles.maintainer}>
-      <Avatar src={src} />
+      <Avatar avatarSRC={avatarSRC} />
       <CustomText style={styles.username}>{username}</CustomText>
     </View>
   );

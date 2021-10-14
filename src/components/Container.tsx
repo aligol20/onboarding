@@ -19,7 +19,6 @@ const Container = ({
 }) => {
   return (
     <SafeAreaView style={[styles.safeAreaView, style]}>
-      {console.log(isLoading, 'isLoading')}
       {isLoading && <CustomLoading style={styles.indicator} />}
 
       {children}

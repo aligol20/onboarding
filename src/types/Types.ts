@@ -4,7 +4,7 @@ import { ImageStyle, ViewStyle } from "react-native";
 export enum UserTypes{
     ADVISER = "ADVISER"
 }
-export interface Postitem {
+export interface PostTypes {
     location:{title: string};
     contentResponse:{description:string,creationDate:string};
     mediaResponses:[{
@@ -19,7 +19,6 @@ export interface Postitem {
         
     }]
     id:number;
-    onPressItem?:(item:Postitem)=>void;
     userIdentification:{
         userId:number;
         username:string;
@@ -49,7 +48,7 @@ export interface IconProps {
 }
 export interface PostHeaderProps{
     onPress?:(e:any)=>void;
-    src:string;
+    avatarSRC:string;
     style?:ImageStyle;
     username?:string
 }

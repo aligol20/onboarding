@@ -4,27 +4,21 @@ import BookmarkIcon from '../icons/BookmarkIcon';
 import CommentIcon from '../icons/CommentIcon';
 import HeartIcon from '../icons/HeartIcon';
 import SendIcon from '../icons/SendIcon';
-import {Postitem} from '../types/Types';
+import {PostTypes} from '../types/Types';
 import {scale} from '../utils/scale';
 
-const PostItemToolbar = ({item}: {item: Postitem}) => {
-  const onLikePress = () => {
-    console.log('like', item);
-  };
+const PostItemToolbar = ({item}: {item: PostTypes}) => {
+  const onLikePress = () => {};
+  const onCommentPress = () => {};
+  const onBookmarkPress = () => {};
   return (
     <View style={styles.maintainer}>
       <View style={styles.container}>
         <HeartIcon onPress={onLikePress} style={styles.iconStyle} />
         <SendIcon style={styles.iconStyle} />
-        <CommentIcon
-          style={styles.iconStyle}
-          onPress={() => console.log('on Press comment')}
-        />
+        <CommentIcon style={styles.iconStyle} onPress={onCommentPress} />
       </View>
-      <BookmarkIcon
-        style={styles.iconStyle}
-        onPress={() => console.log('on Press comment')}
-      />
+      <BookmarkIcon style={styles.iconStyle} onPress={onBookmarkPress} />
     </View>
   );
 };
