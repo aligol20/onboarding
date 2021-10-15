@@ -10,10 +10,14 @@ const CustomVideoPlayer = ({src, style}: {src: string; style?: ViewStyle}) => {
         allowsInlineMediaPlayback={true}
         style={{minWidth: full_width, minHeight: 320, alignSelf: 'center'}}
         scrollEnabled={false}
+        onError={e => console.log(e, 'error')}
         source={{
           html: `
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <video
+        onerror={${(e: any) => {
+          console.log(e, 'error loading video');
+        }}}
         playsInline
         width="100%" height="100%" style="background-color:black" controls>
             <source src="${src}" type="video/mp4">
@@ -26,3 +30,23 @@ const CustomVideoPlayer = ({src, style}: {src: string; style?: ViewStyle}) => {
   );
 };
 export default CustomVideoPlayer;
+
+{
+  /* <WebView
+allowsInlineMediaPlayback={true}
+style={{minWidth: full_width, minHeight: 320, alignSelf: 'center'}}
+scrollEnabled={false}
+onError={e => console.log(e, 'error')}
+source={{
+  html: `
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<video
+playsInline
+width="100%" height="100%" style="background-color:black" controls>
+    <source src="${src}" type="video/mp4">
+</video>
+</meta>
+`,
+}}
+/> */
+}

@@ -1,10 +1,10 @@
 import { ImageStyle, ViewStyle } from "react-native";
 
 
-export enum UserTypes{
-    ADVISER = "ADVISER"
-}
-export interface PostTypes {
+export type  UserType = "ADVISER"
+
+
+export type PostType  = {
     location:{title: string};
     contentResponse:{description:string,creationDate:string};
     mediaResponses:[{
@@ -24,7 +24,7 @@ export interface PostTypes {
         username:string;
         reference:string;
         avatarUrl:string;
-        userType: UserTypes;
+        userType: UserType;
     };
     userSchema:{
         liked:boolean;
@@ -36,19 +36,3 @@ export interface PostTypes {
     owner:boolean;
 }
 
-export interface AuthTypes {
-    main : ()=>void;
-    signIn:()=>void;
-}
-export interface IconProps {
-
-    style?:ViewStyle;
-    onPress?:(e:any)=>void;
-    size?:number;
-}
-export interface PostHeaderProps{
-    onPress?:(e:any)=>void;
-    avatarSRC:string;
-    style?:ImageStyle;
-    username?:string
-}

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Container from '../../../components/Container';
 import CustomLoading from '../../../components/CustomLoading';
@@ -8,7 +8,7 @@ import PostItem from '../../../components/PostItem';
 import {PAGINATION_STEP} from '../../../consts/api';
 import fetchPosts from '../../../redux/actions/fetchPosts';
 import {RootState} from '../../../redux/reducers/root';
-import {PostTypes} from '../../../types/Types';
+import {PostType} from '../../../types/ServiceTypes';
 
 const HomeScreen = () => {
   const [lastReceivedItem, setLastReceivedItem] = useState(PAGINATION_STEP - 1);
@@ -46,13 +46,14 @@ const HomeScreen = () => {
 
   return (
     <Container
-      isLoading={postList.length === 0 && isFetching}
-      style={styles.maintainer}>
+      style={styles.maintainer}
+      isLoading={postList.length === 0 && isFetching}>
+      {console.log(isFetching, 'isFetching')}
       <FlatList
         scrollEnabled
         onRefresh={onRefresh}
-        refreshing={isFetching}
-        keyExtractor={(item: PostTypes, index) => item.id.toString()}
+        refreshing={false}
+        keyExtractor={(item: PostType, index) => item.id.toString()}
         data={postList}
         renderItem={({item}) => <PostItem {...item} />}
         ListFooterComponent={

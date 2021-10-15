@@ -1,11 +1,10 @@
-import {Dispatch} from 'react';
-import {RootStateOrAny} from 'react-redux';
+import { Dispatch } from 'react';
+import { RootStateOrAny } from 'react-redux';
+import { PAGINATION_STEP } from '../../consts/api';
 import getPostsRequest from '../../services/apiRequests/getPostRequest';
+import { PostType } from '../../types/ServiceTypes';
 import snackBar from '../../utils/snackBar';
-import {postsSlice} from '../reducers/postsReducer';
-import {isArray} from 'lodash';
-import {PostTypes} from '../../types/Types';
-import {PAGINATION_STEP} from '../../consts/api';
+import { postsSlice } from '../reducers/postsReducer';
 
 const {requestPostsSuccess, requestStarted, onDataFinished} =
   postsSlice.actions;
@@ -19,7 +18,7 @@ const fetchPosts =
       const fetchPostsResult = await getPostsRequest(fromItem, toItem);
 
       const {status} = fetchPostsResult;
-      const data: [PostTypes] = fetchPostsResult.data;
+      const data: PostType[] = fetchPostsResult.data;
 
       if (status === 200 && data && data.length < PAGINATION_STEP) {
         dispatch(onDataFinished(true));

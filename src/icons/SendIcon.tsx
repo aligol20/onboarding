@@ -1,9 +1,9 @@
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {IconProps} from '../types/Types';
+import {IIcon} from '../types/LocalTypes';
 import {extra_large_scale} from '../utils/sizing';
 
-const SendIcon = ({style, onPress, size = extra_large_scale}: IconProps) => {
+const SendIcon = ({style, onPress, size = extra_large_scale}: IIcon) => {
   return (
     <Ionicons name={'md-send'} style={style} onPress={onPress} size={size} />
   );

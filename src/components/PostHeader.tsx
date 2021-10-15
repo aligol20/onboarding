@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {PostHeaderProps} from '../types/Types';
+import {WHITE} from '../consts/colors';
+import {IPostHeader} from '../types/LocalTypes';
 import {
   full_width,
   small_scale,
@@ -10,7 +11,7 @@ import {
 import Avatar from './Avatar';
 import CustomText from './Customtext';
 
-const PostHeader = ({avatarSRC, username}: PostHeaderProps) => {
+const PostHeader = ({avatarSRC, username}: IPostHeader) => {
   return (
     <View style={styles.maintainer}>
       <Avatar avatarSRC={avatarSRC} />
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
     width: full_width,
     minHeight: very_large_scale,
     paddingHorizontal: small_scale,
+    backgroundColor: WHITE,
   },
   username: {
     marginLeft: tiny_scale,

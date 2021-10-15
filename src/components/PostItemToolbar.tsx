@@ -4,10 +4,10 @@ import BookmarkIcon from '../icons/BookmarkIcon';
 import CommentIcon from '../icons/CommentIcon';
 import HeartIcon from '../icons/HeartIcon';
 import SendIcon from '../icons/SendIcon';
-import {PostTypes} from '../types/Types';
+import {PostType} from '../types/ServiceTypes';
 import {scale} from '../utils/scale';
 
-const PostItemToolbar = ({item}: {item: PostTypes}) => {
+const PostItemToolbar = ({item}: {item: PostType}) => {
   const onLikePress = () => {};
   const onCommentPress = () => {};
   const onBookmarkPress = () => {};

@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import CustomText from '../../../components/Customtext';
 import {BLACK, GREY} from '../../../consts/colors';
-import {PostTypes} from '../../../types/Types';
+import {PostType} from '../../../types/ServiceTypes';
 import {extra_large_scale, medium_scale} from '../../../utils/sizing';
 
 const PostDetailsScreen = (props: {
-  route: {params: {item: PostTypes}; key: string; name: string};
+  route: {params: {item: PostType}; key: string; name: string};
 }) => {
   const {route} = props || {};
   const {params} = route || {};

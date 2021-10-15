@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {BLACK, GREY} from '../consts/colors';
-import {PostTypes} from '../types/Types';
+import {StyleSheet, View} from 'react-native';
+import {BLACK, GREY, WHITE} from '../consts/colors';
+import {PostType} from '../types/ServiceTypes';
 import dateHelper from '../utils/dateHelper';
 import {semi_small_scale, small_scale, tiny_scale} from '../utils/sizing';
 import CustomText from './Customtext';
@@ -9,7 +9,7 @@ import CustomVideoPlayer from './CustomVideoPlayer';
 import PostHeader from './PostHeader';
 import PostItemToolbar from './PostItemToolbar';
 
-const PostItem = (item: PostTypes) => {
+const PostItem = (item: PostType) => {
   const {mediaResponses, contentResponse, userIdentification, id} = item;
 
   return (
@@ -38,10 +38,11 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'center',
-    marginVertical: 7,
+    marginVertical: 3,
     margin: 3,
     padding: 3,
     borderRadius: 5,
+    backgroundColor: WHITE,
   },
   desc: {
     textAlign: 'left',
